@@ -1,0 +1,3 @@
+[19-May-2026 12:52:05 UTC] PHP Warning:  require(/home/thebachelor/public_html/../vendor/autoload.php): failed to open stream: No such file or directory in /home/thebachelor/public_html/index.php on line 14
+[19-May-2026 12:52:05 UTC] PHP Warning:  require(/home/thebachelor/public_html/../vendor/autoload.php): failed to open stream: No such file or directory in /home/thebachelor/public_html/index.php on line 14
+[19-May-2026 12:52:05 UTC] PHP Fatal error:  require(): Failed opening required '/home/thebachelor/public_html/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/thebachelor/public_html/index.php on line 14

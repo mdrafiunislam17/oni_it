@@ -1,0 +1,14 @@
+[19-May-2026 12:53:55 UTC] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 7.3.33. in /home/thebachelor/public_html/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/thebachelor/public_html/vendor/composer/autoload_real.php(25): require()
+#1 /home/thebachelor/public_html/vendor/autoload.php(22): ComposerAutoloaderInit53b5d56b3b7e3cbac1713e68c8850f6c::getLoader()
+#2 /home/thebachelor/public_html/public/index.php(14): require('/home/thebachel...')
+#3 {main}
+  thrown in /home/thebachelor/public_html/vendor/composer/platform_check.php on line 22
+[20-May-2026 07:19:48 UTC] PHP Warning:  require(/home/thebachelor/public_html/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/thebachelor/public_html/public/index.php on line 14
+[20-May-2026 07:19:48 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/thebachelor/public_html/public/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/thebachelor/public_html/public/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/thebachelor/public_html/public/index.php on line 14
+[23-Jun-2026 05:58:23 UTC] PHP Warning:  PHP Request Startup: POST Content-Length of 23782842 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[23-Jun-2026 05:58:42 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 8192 bytes) in /home/thebachelor/public_html/vendor/laravel/framework/src/Illuminate/Collections/Enumerable.php on line 612
