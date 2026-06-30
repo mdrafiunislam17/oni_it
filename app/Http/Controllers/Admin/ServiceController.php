@@ -15,13 +15,14 @@ class ServiceController extends Controller
 {
     //
 
-     private function uploadImage($image): array
+
+    private function uploadImage($image): array
     {
         $extension = strtolower($image->getClientOriginalExtension());
         $path = public_path('uploads/service/');
 
         if (!file_exists($path)) {
-            mkdir($path, 0775, true);
+            mkdir($path, 0777, true);
         }
 
         if (!is_writable($path)) {
@@ -31,21 +32,20 @@ class ServiceController extends Controller
         $baseName = time() . '_' . Str::random(10);
 
         $mainImageName = $baseName . '.' . $extension;
-        $aboutImageName = $baseName . '_about2.' . $extension;
-
-
+//        $thumbImageName = $baseName . '_thumb.' . $extension;
 
         Image::read($image->getRealPath())
-            ->scale(width: 600)
+            // ->scale(width: 800)
+             ->scale(width: 250,height: 320)
             ->save($path . $mainImageName);
 
-        Image::read($image->getRealPath())
-            ->scale(width: 600)
-            ->save($path . $aboutImageName);
+//        Image::read($image->getRealPath())
+//            ->scale(width: 120)
+//            ->save($path . $thumbImageName);
 
         return [
             'main' => $mainImageName,
-            'about' => $aboutImageName,
+//            'thumb' => $thumbImageName,
         ];
     }
 
@@ -91,9 +91,11 @@ class ServiceController extends Controller
             $service->status = $request->status;
             $service->items = $request->items ?? [];
 
+                   // image upload
             if ($request->hasFile('image')) {
                 $images = $this->uploadImage($request->file('image'));
                 $service->image = $images['main'];
+//                $service->image_thumb = $images['thumb'];
             }
 
             $service->save();
@@ -127,18 +129,23 @@ class ServiceController extends Controller
             $service->status = $request->status;
             $service->items = $request->items ?? [];
 
-            if ($request->hasFile('image')) {
+                    // MAIN IMAGE upload
+                    if ($request->hasFile('image')) {
+                        $imagePath = public_path('uploads/service/');
 
-                // Delete old image
-                $oldImage = public_path('uploads/service/' . $service->image);
+                        if (!empty($service->image) && file_exists($imagePath . $service->image)) {
+                            unlink($imagePath . $service->image);
+                        }
 
-                if ($service->image && file_exists($oldImage)) {
-                    unlink($oldImage);
-                }
+//                        if (!empty($service->image_thumb) && file_exists($imagePath . $service->image_thumb)) {
+//                            unlink($imagePath . $service->image_thumb);
+//                        }
 
-                $images = $this->uploadImage($request->file('image'));
-                $service->image = $images['main'];
-            }
+                        $images = $this->uploadImage($request->file('image'));
+                        $service->image = $images['main'];
+//                        $service->image_thumb = $images['thumb'];
+                    }
+
 
             $service->save();
 

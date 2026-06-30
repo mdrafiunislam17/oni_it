@@ -4,9 +4,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AssignRoleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CkeditorController;
-use App\Http\Controllers\Admin\DetailController;
 use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\MicrocityController;
 use App\Http\Controllers\Admin\OrderController;
@@ -22,8 +20,8 @@ use App\Http\Controllers\Admin\SchemeController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ShippingController;
-use App\Http\Controllers\Admin\SkinshotController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SpecialGoalController;
 use App\Http\Controllers\Admin\VisionController;
 use App\Http\Controllers\Admin\VisitorController;
@@ -242,6 +240,14 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::delete('slider/{slider}', [SliderController::class, "destroy"])->name("slider.destroy");
     Route::post('/slider/sort-update', [SliderController::class, 'sortUpdate'])
         ->name('slider.sort.update');
+
+    Route::get('service', [ServiceController::class, "index"])->name("service.index");
+    Route::get('service/create', [ServiceController::class, "create"])->name("service.create");
+    Route::post('service', [ServiceController::class, "store"])->name("service.store");
+    Route::get('service/{service}/edit', [ServiceController::class, "edit"])->name("service.edit");
+    Route::put('service/{service}', [ServiceController::class, "update"])->name("service.update");
+    Route::delete('service/{service}', [ServiceController::class, "destroy"])->name("service.destroy");
+
 
 
     Route::get('rate', [RateController::class, "index"])->name("rate.index");
